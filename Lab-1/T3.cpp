@@ -4,55 +4,24 @@
 #include <string>
 using namespace std;
 
-struct student{
+struct employee{
     string name;
-    int rollNumber;
-    int age;
+    float oldSalary;
+    float newSalary;
+    int workHours;
 };
 
-void print14(student students[],int totalNum){
-    cout<<"Names Of students with Age 14 : \n";
-    for(int i=0;i<totalNum;i++){
-        if(students[i].age==14){
-            cout<<students[i].name<<"\n";
-        }
-    }
-}
-
-void printEven(student students[],int totalNum){
-    cout<<"Names Of students with Even Roll Numbers : \n";
-    for(int i=0;i<totalNum;i++){
-        if(students[i].rollNumber%2==0){
-            cout<<students[i].name<<"\n";
-        }
-    }
-}
-void searchDisplay(student students[],int totalNum){
-    int inputNumber;
-    cout<<"Roll number of student you want to search for : \n";
-    cin>>inputNumber;
-    for(int i=0;i<totalNum;i++){
-        if(students[i].rollNumber==inputNumber){
-            cout<<"-----Details-----\n";
-            cout<<"Name : "<<students[i].name<<"\n";
-            cout<<"Age : "<<students[i].age<<"\n";
-            break;
-        }
-    }
-}
 int main(){
-    srand(time(NULL));
-    int totalStudents=11;
-    student students[totalStudents];
-    for(int i=0;i<totalStudents;i++){
-        students[i].rollNumber=i+1;
-        students[i].age=rand()%4+11;
+    employee Employees[10];
+    for(int i=0;i<10;i++){
         char nameForm[3]={char(97+i),char(122-i),'\0'};
-        students[i].name=nameForm;
+        Employees[i].name=nameForm;
+        Employees[i].oldSalary=rand()%900+100;
+        Employees[i].workHours=(rand()%2==0?8:(rand()%2==0?10:rand()%13+12));
+        Employees[i].newSalary=Employees[i].oldSalary+(Employees[i].workHours==8?50:Employees[i].workHours==10?100:150);
     }
-    print14(students,totalStudents);
-    printEven(students,totalStudents);
-    searchDisplay(students,totalStudents);
-    return 0;
-
+    cout<<"Name---WorkingHours----Old Salary----Final Salary\n";
+    for(int i=0;i<10;i++){
+        cout<<" "<<Employees[i].name<<"          "<<Employees[i].workHours<<"            "<<Employees[i].oldSalary<<"             "<<Employees[i].newSalary<<endl;
+    }
 }
